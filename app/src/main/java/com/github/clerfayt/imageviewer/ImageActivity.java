@@ -11,7 +11,10 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.DisplayMetrics;
+import android.view.MotionEvent;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.github.clerfayt.imageviewer.utils.DecodeUtils;
 
@@ -44,6 +47,13 @@ public class ImageActivity extends Activity {
 
             Bitmap bitmap = DecodeUtils.decode(this, uri, size, size);
             this.imageView.setImageBitmap(bitmap, null, -1, -1);
+            this.imageView.setOnLongClickListener(new View.OnLongClickListener() {
+                @Override
+                public boolean onLongClick(View v) {
+                    Toast.makeText(ImageActivity.this, getString(R.string.app_name) + " " + BuildConfig.VERSION_NAME + " for my Tolino. ST 2017-07", Toast.LENGTH_LONG).show();
+                    return false;
+                }
+            });
         }
     }
 
